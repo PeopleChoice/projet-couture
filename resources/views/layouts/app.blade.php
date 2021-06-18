@@ -1,47 +1,61 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}"> 
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="{{ asset("css/tailwind.output.css")}}" />
+  <script
+    src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+    defer
+  ></script>
+  <script src="{{ asset('js/init-alpine.js')}}"></script>
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        @stack('style')
-        @livewireStyles
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-      
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
-           
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+    <!-- Styles -->
+   
+    @stack('style')
+    @livewireStyles
+
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}" defer></script>
+</head>
+<body >
+    <div class="flex h-screen bg-gray-50 dark:bg-gray-900"  >
+ 
+     
+        @livewire('side-bar')
+        
+            <div class="flex flex-col flex-1 w-full">
+                @livewire('header')
+                <main class="h-full overflow-y-auto">
+                    <div class="container px-6 mx-auto grid">
+                        @livewire('navigation-menu')
+                      
+                        {{ $slot }}
                     </div>
-                </header>
-            @endif
-           
-           
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-
-        @stack('modals')
-        @stack('scripts')
+                </main>
+            </div>
        
-        @livewireScripts
-    </body>
+        
+    </div>
+    @stack('modals')
+    @stack('scripts')
+   
+    @livewireScripts
+</body>
 </html>

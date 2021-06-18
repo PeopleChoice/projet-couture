@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class NavigationMenu extends Component
 {   
-    public $title = "EVENEMENT PHYSARO";
+    public $pageTitle = "Tableau de bord";
     protected $listeners = ['title' => 'recupTitle'];
     public function render()
     {
@@ -14,6 +14,6 @@ class NavigationMenu extends Component
     }
 
     public function recupTitle($title){
-         $this->title = $title;
+         $this->pageTitle = $title;
     }
 }

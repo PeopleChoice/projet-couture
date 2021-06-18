@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\RestaurantsController;
+// use App\Http\Livewire\RestaurantsController;
+use App\Http\Livewire\RoleController;
+use App\Http\Livewire\Home;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,11 @@ use App\Http\Livewire\RestaurantsController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/',RestaurantsController::class)->name('restaurant');
+ Route::get('/roles_index',RoleController::class,'__invoke')->name('roles_index')->middleware('auth');
+Auth::routes();
+
+Route::get('/home', Home::class, '__invoke' )->name('home');
