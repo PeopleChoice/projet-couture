@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class NavigationMenu extends Component
 {   
-    public $pageTitle = "Tableau de bord";
+    public $pageTitle = "";
     protected $listeners = ['title' => 'recupTitle'];
     public function render()
     {

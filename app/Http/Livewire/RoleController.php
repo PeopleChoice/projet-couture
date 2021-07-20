@@ -61,7 +61,7 @@ class RoleController extends Component
                 $role->syncPermissions(Permission::all());
             }
 
-            // dd($this->permission);
+           //dd($this->permission);
 
             $role->syncPermissions($this->permission);
 
@@ -91,27 +91,34 @@ class RoleController extends Component
                     array_push($ancienne_permission,$perm->id);
                 }
 
-
             }
-
+            //dd($this->permission);
            // dd($ancienne_permission);
-            foreach($ancienne_permission as $item)
+            if(\sizeof($this->permission) <= 0)
             {
-                //dd($item);
-                if(!in_array($item, $this->permission))
+            
+
+                foreach($ancienne_permission as $item)
                 {
-                    array_push($this->permission,$item);
-                }   
-                
+                    //dd($item);
+                    if(!in_array($item, $this->permission))
+                    {
+                        array_push($this->permission,$item);
+                    }   
+                    
+                }
             }
-       
-           //dd($this->permission);
+
+          // dd($this->permission);
         if(!in_array($id, $this->permission)){
             \array_push($this->permission,$id);
         }else{
-            //dd($id);
-
-            unset($this->permission[($id-1)]);
+           // dd($id);
+           // dd();
+            if (($key = array_search($id, $this->permission)) !== false) {
+                //dd($key);
+                unset($this->permission[$key]);
+            }
         }
         //dd($this->permission);
     }
