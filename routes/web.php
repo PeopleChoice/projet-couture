@@ -86,3 +86,8 @@ Route::get('boutiqueCommande',CommandeBoutiqueController::class,'__invoke')->nam
 
 
 Route::get('inventaireDepense',InventaireDepense::class,'__invoke')->name('inventaireDepense');
+
+
+
+Route::get('inventaireDepenses','App\Http\Controllers\InventaireDepenseController@index')->name('inventaireDepenses');
+Route::get('filtre','App\Http\Controllers\InventaireDepenseController@filtre')->name('filtre');
