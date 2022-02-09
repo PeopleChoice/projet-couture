@@ -9,6 +9,7 @@
         "asantibanez/livewire-charts": "^2.3",
         "barryvdh/laravel-dompdf": "^0.9.0",
         "consoletvs/charts": "7.*",
+        "dompdf/dompdf": "^1.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -18,7 +19,7 @@
         "laravel/ui": "^3.3",
         "laraveldaily/laravel-charts": "^0.1.25",
         "livewire/livewire": "^2.4",
-        "mediconesystems/livewire-datatables": "^0.4.3",
+        "mediconesystems/livewire-datatables": "^0.6.8",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^4.2"
     },

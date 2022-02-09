@@ -40,6 +40,7 @@ class ImprimerController extends Controller
 
 
     public function showFactureCommande(Request $request){
+
        $client = Client::where('id',$request->idClient)->first();
         //dd($client);
         $mycommande = Commande::where('id',$request->id)->with('detaille')->first();
@@ -61,6 +62,7 @@ class ImprimerController extends Controller
         ]);
         $customPaper = array(0,0,650.00,400.80);
         $pdf = PDF::loadView('livewire.facture_atelier',['image' => $image,'qr'=>$qr,'mycommande'=>$mycommande,'totalDetaille'=>$totalDetaille,'client'=>$client])->setPaper($customPaper,'landscape');
+        dd($pdf);
         return $pdf->stream('facture_atelier.pdf');
     }
 
