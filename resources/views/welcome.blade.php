@@ -55,7 +55,7 @@
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline" style="text-align: end">Home</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-2xl text-black-300 underline font-bold" style="text-align: end">Log in</a>
+                        <a href="{{ route('login') }}" class="text-2xl text-black-300 underline font-bold" style="text-align: end">Connexion</a>
 
                         {{-- @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
@@ -63,7 +63,7 @@
                     @endauth
                 </div>
             @endif
-
+            <p style="text-align: center;margin-top: 20%;font-size: 25px;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">DANE HAUTE COUTURE</p>
            
         </div>
     </body>

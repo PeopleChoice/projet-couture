@@ -29,7 +29,6 @@ class CommandeController extends Component
     public $searchTerms ;
     public $prix_u,$qt,$libelle_detaille,$detailles,$totalDetaille,$payer = 0,$total=0;
     public $date_commande,$date_livraison,$mensuration,$libelle,$accompt=0,$remise = 0,$status;
-    // public $listeners = ['fileUpload' => 'handleFileUpload'];
     public $m = array('COL'=>'X','EPAULE'=>'X','MANCHE'=>'X',
                       'LONGUEUR BOUBOU'=>'X','POITRINE'=>'X',
                       'TOUR DE VENTRE'=>'X','TOUR DE BRAS'=>'X',
@@ -80,7 +79,6 @@ class CommandeController extends Component
           $this->date_commande = '';
           $this->date_livraison = '';
           $this->libelle = '';
-          //$this->accompt = '';
           $this->status = '';
 
 
@@ -110,20 +108,36 @@ class CommandeController extends Component
             $this->payer = $cpt - $commande->remise;
         }
 
-
+    
+        if($this->commande_id != null){
+            $commandee = Commande::where('id',$this->commande_id)->update([
+                'date_commande' => $this->date_commande,
+                'date_livraison' => $this->date_livraison,
+                'remise' => $this->remise,
+                'libelle' => $this->libelle,
+                'accompt' => $this->accompt,
+                'status' => $this->status,
+                'clients_id'=>$this->client_id,
+                'payer' => $this->payer == $this->accompt ? 1 : 0
+                 
+            ]);
         
-        $commandee = Commande::updateOrCreate(['id' => $this->commande_id], [
-            'date_commande' => $this->date_commande,
-            'date_livraison' => $this->date_livraison,
-            'remise' => $this->remise,
-            'libelle' => $this->libelle,
-            'accompt' => $this->accompt,
-            'status' => $this->status,
-            'clients_id'=>$this->client_id,
-            'payer' => $this->payer == $this->accompt ? 1 : 0
-             
-        ]);
-         
+        }else{
+            $commandee = Commande::create([
+                'date_commande' => $this->date_commande,
+                'date_livraison' => $this->date_livraison,
+                'remise' => $this->remise,
+                'libelle' => $this->libelle,
+                'accompt' => $this->accompt,
+                'status' => $this->status,
+                'clients_id'=>$this->client_id,
+                'payer' => $this->payer == $this->accompt ? 1 : 0
+                 
+            ]);
+            
+
+        }
+            
        
         session()->flash('message', $this->commande_id ? ' Commande updated.' : 'Commande created.');
         $this->commande_id = "";
@@ -178,12 +192,12 @@ class CommandeController extends Component
 
     public function openMensuration()
     {
-        //dd($this->m);
+        
         $this->client_id  = $this->clients['id'];
        
      
         $commande = Mensuration::find($this->client_id);
-      ///  dd($commande);
+     
         if($commande){
             $buffer = \explode('/', $commande->mensuration);
      

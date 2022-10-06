@@ -48,7 +48,7 @@ class ProduitController extends Component
         $imageName = time().'.'.$this->image->extension();
         $filPath = \public_path('storage/images');
         $img = Image::make($this->image->path());
-        $img->resize(110,150,function($const){
+        $img->resize(1000,600,function($const){
             $const->aspectRatio();
         })->save($filPath."/".$imageName);
        

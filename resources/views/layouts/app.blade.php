@@ -8,15 +8,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Projet Couture</title>
-     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}"> 
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}">  --}}
    
   <link rel="stylesheet" href="{{ asset("css/tailwind.output.css")}}" />
   <link href="{{ asset('table/datatables.min.css') }}" rel="stylesheet"> 
  
   <script src="{{ asset('js/init-alpine.js')}}"></script>
   <script src="{{ asset('js/app.js') }}" defer></script>
-  <script src="{{ asset('js/focus-trap.js') }}" defer></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+  {{-- <script src="{{ asset('js/focus-trap.js') }}" defer></script> --}}
    
    
     @stack('style')
@@ -49,8 +50,28 @@
   
     @livewireScripts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script> 
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        var swiper = new Swiper('.mySwiper', {
+          spaceBetween: 30,
+          centeredSlides: true,
+          autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      </script>
     
   
 </body>

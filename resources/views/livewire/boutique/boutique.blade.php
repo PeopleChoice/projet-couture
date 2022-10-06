@@ -158,7 +158,7 @@
                                         $total = 0;
                                         
                                         foreach ($panier as $item) {
-                                            $total = $total + $item['qt'] * $item['prix'];
+                                            $total = (int)$total + (int)$item['qt'] * (int)$item['prix'];
                                         }
                                     @endphp
                                    <p class="text-base font-bold">Total avant remise : {{$total }} Franc cfa</p>
@@ -171,14 +171,14 @@
                                                         
                         <label for="exampleFormControlInput1"
                             class="block text-gray-700 text-sm font-bold mb-2">Remise Globale:</label>
-                        <input type="text"
+                        <input type="number"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="exampleFormControlInput1" placeholder="Remise Globale" wire:model="remise" wire:change="recupeChange()">
                         @error('remise') <span class="text-red-500">{{ $message }}</span>@enderror
                      </div>
                      <div class="mb-4">
                         
-                        <p class="text-base text-red-700 font-bold ">Total aprés remise : {{ $remise != 0 ? $total - $remise : $total }} Franc cfa</p>
+                        <p class="text-base text-red-700 font-bold ">Total aprés remise : {{ (int)$remise != 0 ? (int)$total - (int)$remise : (int)$total }} Franc cfa</p>
                      </div>
                     
                 </div>

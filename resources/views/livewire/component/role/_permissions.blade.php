@@ -27,11 +27,12 @@
            
                     <div >
                         <label class="{{ Str::contains($perm->name, 'supprimer') ? 'text-red-800' : '' }}">
-                            {{$perm->name}}
-                            {{-- {!! Form::checkbox("permissions[]", $perm->name, $per_found, isset($options) ? $options : []) !!} {{ $perm->name }} --}}
                             <?php $status = $per_found == true ? "checked" : "" ?>
                             <?php $status2 = $options == true ? "disabled" : "" ?>
                             <input type="checkbox"   value="{{$perm->id}}"  wire:click="checkClick({{$perm->id}},{{$role_id}})" name="permission"  class="form-checkbox h-5 w-5 text-gray-600" {{$status}}  {{$status2}}   >
+                            &nbsp;
+                            {{$perm->name}}
+                         
                         </label>
                    </div>
             

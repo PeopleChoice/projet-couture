@@ -52,7 +52,7 @@ class ImprimerController extends Controller
        }
         
         $totalDetaille = $cpt;
-       //dd($mycommande);
+       
         $image = base64_encode(file_get_contents(public_path('/img/logo1.png')));
         $qr = base64_encode(file_get_contents(public_path('/img/qr2.png')));
         PDF::setOptions([
@@ -62,7 +62,7 @@ class ImprimerController extends Controller
         ]);
         $customPaper = array(0,0,650.00,400.80);
         $pdf = PDF::loadView('livewire.facture_atelier',['image' => $image,'qr'=>$qr,'mycommande'=>$mycommande,'totalDetaille'=>$totalDetaille,'client'=>$client])->setPaper($customPaper,'landscape');
-        dd($pdf);
+        // dd($pdf);
         return $pdf->stream('facture_atelier.pdf');
     }
 

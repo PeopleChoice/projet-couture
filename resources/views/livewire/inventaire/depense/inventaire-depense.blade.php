@@ -1,8 +1,3 @@
-
-
-
-
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 <head>
@@ -33,16 +28,16 @@
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900"  >
  
      
-        @livewire('side-bar')
+        {{-- @livewire('side-bar') --}}
         
             <div class="flex flex-col flex-1 w-full">
-                @livewire('header')
+                {{-- @livewire('header') --}}
                 <main class="h-full overflow-y-auto">
                     <div class="container px-6 mx-auto grid">
                         @livewire('navigation-menu')
                          {{-- debut --}}
 
-                         <div class="grid grid-cols-1 md:grid-cols-2">
+                         <div class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2">
 
 
                             <div>
@@ -55,20 +50,20 @@
                         
                         
                         
-                                <div class="flex">
-                                    <div class="w-1/3">
+                                <div  class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-3">
+                                    <div >
                                         <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold ">Date debut:</label>
                                         <input type="date" class="justify-content-between" placeholder="Search par date..."
                                             id="date_debut"  />
                         
                                     </div>
-                                    <div class="w-1/3">
+                                    <div >
                         
                                         <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold">Date Fin:</label>
                                         <input type="date" class="justify-content-between" placeholder="Search par date..."
                                            id="date_fin" />
                                     </div>
-                                    <div class="w-1/3">
+                                    <div >
                         
                                         <button id="filter"   class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-bold text-white shadow-sm hover:bg-red-700 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5 mt-5">Filter</button>
                                     </div>

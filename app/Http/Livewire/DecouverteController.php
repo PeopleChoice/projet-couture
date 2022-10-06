@@ -22,7 +22,7 @@ class DecouverteController extends Component
     {
         $searchTerms = "%".$this->searchTerms."%";
 
-        return view('livewire.decouverte.decouverte', ['AllData'=> Decouverte::where('libelle','like',$searchTerms)->paginate(10)]);
+        return view('livewire.decouverte.decouverte', ['AllData'=> Decouverte::where('libelle','like',$searchTerms)->paginate(8)]);
     }
 
 
@@ -41,7 +41,7 @@ class DecouverteController extends Component
         $imageName = time().'.'.$this->image->extension();
         $filPath = \public_path('storage/images');
         $img = Image::make($this->image->path());
-        $img->resize(110,150,function($const){
+        $img->resize(1000,600,function($const){
             $const->aspectRatio();
         })->save($filPath."/".$imageName);
        

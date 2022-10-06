@@ -13,10 +13,7 @@
             @endif
           
           <br><br>
-            @can('ajouter_decouvertes')
-              <button wire:click="create()"
-                  class="bg-green-700 text-white font-bold py-2 px-4 rounded my-3">Ajouter une image</button>
-            @endcan
+          
             @if($isModalOpen)
             @include('livewire.decouverte.createModale')
             @endif
@@ -24,55 +21,37 @@
             @include('livewire.decouverte.showImage')
             @endif
         
-            <input type="text" class="justify-content-between" placeholder="Search ..." wire:model="searchTerms"/>
+            
            
-            {{-- <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
-              <div class="w-full overflow-x-auto">
-                <!--Card 1-->
-                @foreach($AllData as $decouverte)
-                
-                @php
-                
-                    $recup =  explode(".",$decouverte->image);
-                    if(strtoupper($recup[1]) == "JPG"){
-                      $recup[1] = 1;
-                    }else if(strtoupper($recup[1]) =="JPEG"){
-                      $recup[1] = 2;
-                    }else{
-                      $recup[1] = 3;
-                    }
-                @endphp
-
-                <button class="rounded overflow-hidden shadow-lg" wire:click="openImage({{$recup[0]}} , {{$recup[1]}})" >
-                  <img class="object-contain h-48  w-full zoom"  src="{{asset('storage/images/'.$decouverte->image)}}"  >
-                  <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">{{$decouverte->libelle}}</div>
-                    <p class="text-gray-700 text-base">
-                        {{$decouverte->description}}
-                    </p>
-                  </div>
-                
-                </button>
-
-                @endforeach
-               
-                <!--Card 2-->
-               
-              </div>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+               <div>
+                <div class=" mx-auto text-gray-600">
+                  <input
+                      class="border-2 border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none"
+                      type="search" name="search" placeholder="Search" wire:model="searchTerms">
+                  
+                 </div>
+               </div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div>
+                  @can('ajouter_decouvertes')
+                  <button wire:click="create()"
+                      class="bg-green-700 text-white font-bold py-2 px-4 rounded my-3">Ajouter une image</button>
+                  @endcan
+               </div>
             </div>
-              {{ $AllData->links() }} --}}
-
-            {{-- debut --}}
-
+        
             <main class="my-8">
               <div class="container mx-auto px-6">
                   {{-- <h3 class="text-gray-700 text-2xl font-medium">Wrist Watch</h3>
                   <span class="mt-3 text-sm text-gray-500">200+ Products</span> --}}
-                  <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+                  <div class="grid gap-4 grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
                     @foreach($AllData as $decouverte)
                     
                             @php
-                            
+                              
                                 $recup =  explode(".",$decouverte->image);
                                 if(strtoupper($recup[1]) == "JPG"){
                                   $recup[1] = 1;
@@ -82,14 +61,16 @@
                                   $recup[1] = 3;
                                 }
                               @endphp
-                          <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden" wire:click="openImage({{$recup[0]}} , {{$recup[1]}})">
+                          <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden " wire:click="openImage({{$recup[0]}} , {{$recup[1]}})">
                               <div class="flex items-end justify-end h-80 w-full bg-cover" style="background-image: url({{asset('storage/images/'.$decouverte->image)}})">
-                                 
+                                      <div class="grid place-items-center hover:bg-green-100 hover:opacity-50 h-80 w-full ">
+                                             
+                                              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 opacity-0 hover:opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                                              </svg>
+                                      </div>
                               </div>
-                              <div class="px-5 py-3">
-                                  <h3 class="text-gray-700 uppercase">{{$decouverte->libelle}}</h3>
-                                  <span class="text-gray-500 mt-2"> {{$decouverte->description}}</span>
-                              </div>
+                             
                           </div>
 
                       @endforeach

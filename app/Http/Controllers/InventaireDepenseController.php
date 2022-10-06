@@ -24,6 +24,7 @@ class InventaireDepenseController extends Controller
     public function index()
     {
         $depenses = Depense::get();
+       
         $somme = 0;
         foreach($depenses as $i ){
             
@@ -32,7 +33,7 @@ class InventaireDepenseController extends Controller
                 
         return view('livewire.inventaire.depense.inventaire-depense',
                 [
-                    'depenses'=>   $depenses,
+                    'depenses'=> $depenses,
                     'sommes'=>$somme
                 ]
             );

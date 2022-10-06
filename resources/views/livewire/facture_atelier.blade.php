@@ -20,15 +20,14 @@
 </head>
 <body>
     
-    <div id="corp">
+<div id="corp">
         <div class="flex justifiy-left">
             <img src="data:image/png;base64,{{ $image }}" class="w-24"/>
             <p style="text-align: right;font-family: Calibri" class="text-sm">Dakar, le {{ date("d/m/Y") }}</p>
 
         </div>
       
-       
-        <p style="text-align: center ;font-family: Calibri">Client</p>
+       <p style="text-align: center ;font-family: Calibri">Client</p>
         <hr>
 
         <div class="mt-5">
@@ -87,18 +86,9 @@
                 @endphp
                 </p>
         </div>
+       
         <div class="mt-5">
-            <div class="flex">
-                <div>
-                    <p style="font-family: Calibri" class="text-sm font-bold"> Détails réglement</p>
-                </div>
-                <div>
-                    <p class="text-sm font-bold" style="text-align: right;font-family: Calibri"> Signature</p>
-                </div>
-            </div>
-        </div>
-        <div class="mt-5">
-            
+             <p style="font-family: Calibri" class="text-sm font-bold"> Détails réglement</p>
              <p style="font-family: Calibri" class="text-sm"  >
                Total net à payé  :  {{ $totalDetaille - $mycommande->remise }} fcfa
              </p>
@@ -109,15 +99,19 @@
                Remise : {{ $mycommande->remise }}  fcfa
            </p>
            <p   style="font-family: Calibri" class="text-sm"  >
-               Reste à payé :  {{ $totalDetaille - $mycommande->remise - $mycommande->accompt }} fcfa
+               Reste à payé :  {{ (int)$totalDetaille - (int)$mycommande->remise - (int)$mycommande->accompt }} fcfa
            </p>
-        </div>
-
-       
-      
-
-
-      
+        </div>    
+        <div class="mt-5">
+            <div class="flex">
+                <div>
+                  
+                </div>
+                <div>
+                    <p class="text-sm font-bold" style="text-align: right;font-family: Calibri"> Signature</p>
+                </div>
+            </div>
+        </div>  
 </div>
  <footer>
     <div  class=" flex w-full" >

@@ -30,7 +30,7 @@ class InventaireDepense extends Component
                 
                 // $this->sommes = $somme;
                 // ['clients'=> Client::where('mobile','like',$searchTerms)->paginate(10)]
-                $this->depenses = Depense::whereBetween('date_enreg',[$this->date_debut,$this->date_fin])->paginate(10);
+                // $this->depenses = Depense::whereBetween('date_enreg',[$this->date_debut,$this->date_fin])->paginate(10);
                
                 return view('livewire.inventaire.depense.inventaire-depense',
                                                         [
