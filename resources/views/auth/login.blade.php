@@ -2,7 +2,7 @@
 
 @section('content')
 
-                   <br><br>
+                   <br><br><br><br>
                     <div class="max-w-2xl mx-auto sm:px-8 lg:px-10  pt-15" >
                         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
 
