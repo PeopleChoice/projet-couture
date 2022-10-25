@@ -33,11 +33,13 @@ class PrestationController extends Component
     public function openModalPopover()
     {
         $this->isModalOpen = true;
+        $this->emit('showModalprestataire');
     }
 
     public function closeModalPopover()
     {
         $this->isModalOpen = false;
+        $this->emit('hideModalprestataire');
     }
 
     private function resetCreateForm(){

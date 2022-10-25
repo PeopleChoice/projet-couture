@@ -7,7 +7,8 @@ use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 class RoleController extends Component
-{   public $title ="Roles & permission";
+{   
+    public $title ="Roles & permission";
     public $openModal = 0;
     public $name;
     public $id_role;
@@ -29,6 +30,8 @@ class RoleController extends Component
 
     public function create(){
         $this->openModal = true;
+        $this->emit('showModal');
+        
     }
 
 
@@ -38,6 +41,7 @@ class RoleController extends Component
        
         if( Role::create(['name'=>$this->name]) ) {
             $this->openModal = false;
+            $this->emit('hideModal');
             $this->name = "";
         }
 
@@ -46,6 +50,7 @@ class RoleController extends Component
 
     public function closeModalPopover(){
         $this->openModal = false;
+        $this->emit('hideModal');
     }
 
 

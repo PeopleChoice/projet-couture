@@ -80,39 +80,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-1">
                           
                         
-                            <table class="w-full whitespace-no-wrap">
-                                <thead>
-                                    <tr class="bg-gray-100">
-                                        <th  class=" border px-4 py-2w-60">Date</th>
-                                        <th  class=" border px-4 py-2w-60">Libelle</th>
-                                        <th  class=" border px-4 py-2w-40">Description</th>
-                                        <th  class="border px-4 py-2">Qt</th>
-                                        <th  class="border px-4 py-2">Prix Unitaire</th>
-                                        <th  class="border px-4 py-2">Total</th>
-                                   
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800" id="body" >
-                                 
-                                   @if($depenses)
-                                
-                                    @foreach($depenses as $depense)
-                                   
-                                     <tr>
-                                        <td class="border px-4 py-2">{{  $depense["date_enreg"]  }}</td>
-                                        <td class="border px-4 py-2">{{ $depense["libelle"]  }}</td>
-                                        <td class="border px-4 py-2">{{ $depense["description"] }}</td>
-                                        <td class="border px-4 py-2">{{ $depense["qt"] }}</td>
-                                        <td class="border px-4 py-2">{{ $depense["prix"]}}</td>
-                                        <td class="border px-4 py-2">{{ $depense["qt"]  * $depense["prix"]  }}</td>
-                                  
-                                        
-                                    </tr> 
-                                    @endforeach
-                                 
-                                    @endif
-                                </tbody>
-                            </table>
+                        
                           
                           
                         </div>

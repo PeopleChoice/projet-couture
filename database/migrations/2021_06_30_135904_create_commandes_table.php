@@ -18,7 +18,7 @@ class CreateCommandesTable extends Migration
             $table->string('date_commande');
             $table->string('date_livraison');
             $table->string('libelle');
-            $table->string('accompt')->default('0');
+            // $table->string('accompt')->default('0');
             $table->string('remise')->default('0');
             $table->string('payer')->nullable();;
             $table->string('status');

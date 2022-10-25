@@ -1,14 +1,16 @@
 
 
- <div class="w-full my-4">
-    <div x-data={show:false} class="rounded-sm">
-        <div class="border border-b-0 bg-gray-100 px-10 py-6" id="headingOne">
-            <button @click="show=!show" class="underline text-blue-500 hover:text-blue-700 focus:outline-none" type="button">
-                {{ isset($title) ? Str::slug($title) : 'Override Permissions' }} {!! isset($user) ? '<span class="">(' . $user->getDirectPermissions()->count() . ')</span>' : '' !!}
-            </button>
+ <div >
+    {{-- x-data={show:false} --}}
+    <div  class="rounded-sm">
+        <div  id="headingOne" style="background-color: rgb(244, 237, 237);padding: 10px">
+            {{-- <button @click="show=!show" class="btn btn-primary" type="button"> --}}
+                <h2 style="color: green">{{ isset($title) ? Str::slug($title) : 'Override Permissions' }} {!! isset($user) ? '<span class="">(' . $user->getDirectPermissions()->count() . ')</span>' : '' !!}</h2>
+            {{-- </button> --}}
         </div>
-        <div x-show="show" class="border border-b-0 px-10 py-6">
-            <div class="grid  md:grid-cols-4 sm:grid-cols-2">
+        <br>
+        <div x-show="show" >
+            <div class="row ">
    
             @foreach($permissions as $perm)
             <?php
@@ -25,7 +27,7 @@
             ?>
             
            
-                    <div >
+                    <div  class="col-sm-1 col-md-4 ">
                         <label class="{{ Str::contains($perm->name, 'supprimer') ? 'text-red-800' : '' }}">
                             <?php $status = $per_found == true ? "checked" : "" ?>
                             <?php $status2 = $options == true ? "disabled" : "" ?>
@@ -40,7 +42,7 @@
           </div>
           <br><br>
           @can('modifier_roles')
-            <button type="submit" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+            <button type="submit" class="btn btn-success float-right">
                 Enregister {{$role->name}}
             </button>
           @endcan

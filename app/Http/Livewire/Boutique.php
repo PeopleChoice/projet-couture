@@ -22,6 +22,27 @@ class Boutique extends Component
     public $showpayement = false;
     public $remise = 0;
     public $commande_id;
+    public $taille;
+    public $lib;
+      
+    public $libelle_array = array("Chemise simple",
+        "Caftan simple",
+        "Ensemble chemise pantalon",
+        "Pantalon supercent", 
+        "Tourki simple",
+        "Tourki original", 
+        "Ensemble wax", 
+        "Grand Boubou",
+        "Sabador", 
+        "Ensemble Costume",
+        "Caftan enfant 2ans", 
+        "Caftan enfant  4ans 6ans", 
+        "Caftan enfant 8 ans 12 ans", 
+    );
+
+
+    public $taille_array = array("S","M","L","XL","XXL","XXXL");
+
     public $nom="diop",$prenom="cheikh",$telephone="telephone",$adresse="thies",$email="cheikh@gmail.com",$date_commande;
     public function render()
     {
@@ -36,8 +57,16 @@ class Boutique extends Component
         else{
             $this->isFirst=false;
         }
+
         if($this->categorie_id)
         {
+            if($this->lib){
+                if($this->taille){
+                    return  view('livewire.boutique.boutique',['produits'=>Produit::where('categories_id',$this->categorie_id)->where('libelle',$this->lib)->where('taille',$this->taille)->paginate(10),'allCategorie'=>Categorie::get()]);
+                }
+                return  view('livewire.boutique.boutique',['produits'=>Produit::where('categories_id',$this->categorie_id)->where('libelle',$this->lib)->paginate(10),'allCategorie'=>Categorie::get()]);
+
+            }
             return view('livewire.boutique.boutique',['produits'=>Produit::where('categories_id',$this->categorie_id)->paginate(10),'allCategorie'=>Categorie::get()]);
         }else{
             return view('livewire.boutique.boutique',['produits'=>Produit::paginate(10),'allCategorie'=>Categorie::get()]);

@@ -20,7 +20,6 @@ class CreateDetailsPrestationsTables extends Migration
             $table->string('libelle');
             $table->string('status');
             $table->string('qt');
-            $table->string('acompte');
             $table->integer('prestataires_id')->unsigned();
             $table->foreign('prestataires_id')
                 ->references('id')->on('prestataires')

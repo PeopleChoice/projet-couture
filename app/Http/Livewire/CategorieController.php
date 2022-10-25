@@ -7,7 +7,7 @@ use App\Models\Categorie;
 use Livewire\WithPagination;
 class CategorieController extends Component
 {
-    public $isModalOpen = 0;
+    
     use WithPagination;
     public $libelle_categorie,$id_categorie;
     public $searchTerms;
@@ -19,12 +19,12 @@ class CategorieController extends Component
     }
 
      public function create(){
-         $this->isModalOpen = true;
+         $this->emit('showModalacatgorie');
      }
 
 
-     public function close(){
-        $this->isModalOpen = false;
+     public function closeModalCategorie(){
+        $this->emit('hideModalacatgorie');
      }
 
 
@@ -40,7 +40,7 @@ class CategorieController extends Component
         $categorie = Categorie::updateOrCreate(['id' => $this->id_categorie], [
             'libelle' =>$this->libelle_categorie
         ]);
-        $this->isModalOpen = false;
+        $this->emit('hideModalacatgorie');
         session()->flash('message', $this->id_categorie ? ' Categorie modifiée.' : 'Categorie ajouté.');
      }
 
@@ -51,6 +51,7 @@ class CategorieController extends Component
         $this->id_categorie = $id;
         $this->libelle_categorie =  $categorie->libelle;
         $this->isModalOpen = true;
+        $this->emit('showModalacatgorie');
      }
 
 

@@ -5,15 +5,18 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Prestataire;
 use App\Models\DetailsPrestation;
+use App\Models\Acompte;
 use Livewire\WithPagination;
 use Carbon\Carbon;
 class PrestationDeatails extends Component
 { 
     use WithPagination;
     public $prestataire_id;
+    public $prestation_id,$montant_acompte,$allAcompte;
     public $prestataire;
     public $searchTerms;
     public $isModalOpen = 0;
+    public $isModalOpenList = 0;
     public $date_prestation,$prix,$qt,$libelle,$status,$acompte;
     public $detaille_id;
     public function mount($id){
@@ -25,7 +28,7 @@ class PrestationDeatails extends Component
     public function render()
     {
         $searchTerms = "%".$this->searchTerms."%";
-        return view('livewire.prestataire.prestation-deatails', ['prestations'=> DetailsPrestation::where('prestataires_id', $this->prestataire_id)->where('date_prestation','like',$searchTerms)->paginate(10)]);
+        return view('livewire.prestataire.prestation-deatails', ['prestations'=> DetailsPrestation::where('prestataires_id', $this->prestataire_id)->where('date_prestation','like',$searchTerms)->with("acompte")->paginate(10)]);
     }
 
 
@@ -39,11 +42,13 @@ class PrestationDeatails extends Component
     public function openModalPopover()
     {
         $this->isModalOpen = true;
+        $this->emit('showModalprestataire');
     }
 
     public function closeModalPopover()
     {
         $this->isModalOpen = false;
+        $this->emit('hideModalprestataire');
     }
 
     private function resetCreateForm(){
@@ -77,8 +82,7 @@ class PrestationDeatails extends Component
           'prix' => $this->prix,
           'qt'=> $this->qt,
           'status' => $this->status,
-          'prestataires_id'=>$this->prestataire_id,
-          'acompte'=>0
+          'prestataires_id'=>$this->prestataire_id
            
       ]);
 
@@ -131,5 +135,59 @@ public function changeacompte($id,$field){
 
 }
 
+public function addAcompte($id)
+{
+    $this->prestation_id = $id;
+    if($this->prestation_id){
+        $this->openModalAcompte();
+    }
 }
+
+
+public function showAcompteList($id)
+{
     
+     $this->allAcompte = Acompte::where('details_prestation_id',$id)->get();
+     $this->isModalOpenList =true;
+    $this->openModalAcomptelist();
+   
+}
+
+public function saveAcompte(){
+    
+    $acompte =new Acompte();
+    $acompte->prix = $this->montant_acompte;
+    $acompte->details_prestation()->associate($this->prestation_id);
+    $acompte->save();
+    $this->closeModalAcompte();
+    session()->flash('message', 'Acompte Ajouté.');
+
+}
+
+
+public function openModalAcompte()
+    {
+       
+        $this->emit('showModalacompte');
+    }
+
+    public function closeModalAcompte()
+    {
+      
+        $this->emit('hideModalacompte');
+    }
+    public function openModalAcomptelist()
+    {
+       
+        $this->emit('showModalacomptelist');
+    }
+
+    public function closeModalAcomptelist()
+    {
+      
+        $this->emit('hideModalacomptelist');
+    }
+     
+
+
+}

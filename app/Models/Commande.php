@@ -16,17 +16,22 @@ class Commande extends Model
         'remise',
         'payer',
         'status',
-        'clients_id'
+        'clients_id',
+        'code'
     ];
     protected $casts = [
         'date_commande' => 'date:Y-m-d'
     ];
 
     public function client(){
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class,'clients_id');
     }
 
     public function detaille(){
         return $this->hasMany(Detaille::class);
+    }
+
+    public function acompte_commande(){
+        return $this->hasMany(AcompteCommande::class);
     }
 }

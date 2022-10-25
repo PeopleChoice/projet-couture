@@ -19,7 +19,7 @@
         "laraveldaily/laravel-charts": "^0.1.25",
         "livewire/livewire": "^2.4",
         "mediconesystems/livewire-datatables": "^0.6.8",
-        "simplesoftwareio/simple-qrcode": "^4.2",
+        "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-permission": "^4.2"
     },
     "require-dev": {

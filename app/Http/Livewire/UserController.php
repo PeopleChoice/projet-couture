@@ -34,6 +34,8 @@ class UserController extends Component
     public function create(){
         $this->roles = Role::all();
         $this->isModalOpen = true;
+        $this->emit('showModal');
+        
 
     }
 
@@ -50,6 +52,8 @@ class UserController extends Component
             $user->assignRole($this->role);
         }
       
+      
+        $this->emit('hideModal');
         $this->isModalOpen = false;
         $this->name = "";
         $this->email = "";
@@ -59,14 +63,17 @@ class UserController extends Component
 
 
    public function close(){
+    $this->emit('hideModal');
     $this->isModalOpen = false;
+    
    }
 
 
 
    public function edit($id){
-      $this->roles = Role::all();
+       $this->roles = Role::all();
        $this->isModalOpen = true;
+       $this->emit('showModal');
        $this->user_id = $id;
        $user = User::findOrFail($id);
        $this->name = $user->name;

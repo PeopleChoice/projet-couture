@@ -22,12 +22,13 @@ class DecouverteController extends Component
     {
         $searchTerms = "%".$this->searchTerms."%";
 
-        return view('livewire.decouverte.decouverte', ['AllData'=> Decouverte::where('libelle','like',$searchTerms)->paginate(8)]);
+        return view('livewire.decouverte.decouverte', ['AllData'=> Decouverte::where('libelle','like',$searchTerms)->paginate(4)]);
     }
 
 
     public function create(){
      $this->isModalOpen = true;
+     $this->emit('showModaladdImage');
     }
 
 
@@ -52,6 +53,7 @@ class DecouverteController extends Component
             'image' =>  $imageName,
         ]);
         $this->isModalOpen = false;
+        $this->emit('hideModaladdImage');
         $this->libelle = "";
         $this->description = "";
         $this->image = "";
@@ -71,15 +73,19 @@ class DecouverteController extends Component
         $recup = $recup."".$ext;
       
         $this->isModalImage = true;
+        $this->emit('showModalImage');
         $this->imageRecup =$recup;
+
     }
 
     public function closeModalImage(){
+        $this->emit('hideModalImage');
         $this->isModalImage = false;
     }
 
     public function closeModalPopover(){
         $this->isModalOpen = false;
+        $this->emit('hideModaladdImage');
         $this->libelle = "";
         $this->description = "";
         $this->image = "";

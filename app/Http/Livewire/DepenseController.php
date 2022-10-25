@@ -16,9 +16,25 @@ class DepenseController extends Component
     public $newProduit;
     public $totalDepense = 0;
     public $libellArray = array(
-                  "FAILLE",
-                  "FIL A COUDRE",
-                  "RENFPORT");
+                  "Courant", 
+                  "Paquetage",
+                  "Parfum", 
+                  "Eau", 
+                  "Salaire",
+                  "Location", 
+                  "Dépenses diverses",
+                  "Fourniture atelier",
+                    "Popeline", 
+                    "Paquetage", 
+                    "Soy",
+                    "Faille", 
+                    "Renfort",
+                    "Dépenses diverses",
+                    "Salaire",
+                "Électricité",
+                "Location"
+                  
+                );
     public function render()
     {
         //dd("hhh");
@@ -54,17 +70,20 @@ class DepenseController extends Component
      
         $this->resetCreateForm();
         $this->openModalPopover();
+       
     }
 
     public function openModalPopover()
     {
       
         $this->isModalOpenFormDepense = true;
+        $this->emit('showModaldepense');
     }
 
     public function closeModalPopover()
     {
         $this->isModalOpenFormDepense = false;
+        $this->emit('hideModaldepense');
     }
 
     public function resetCreateForm(){

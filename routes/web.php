@@ -20,6 +20,8 @@ use App\Http\Controllers\ImprimerController;
 use App\Http\Livewire\CommandeBoutiqueController;
 use App\Http\Livewire\UserController;
 use App\Http\Livewire\InventaireDepense;
+use App\Http\Livewire\AllCommandesController;
+use App\Http\Livewire\ReportingTailleur;
 
 use PDF as pdf;
 /*
@@ -57,6 +59,7 @@ Route::get('depense',DepenseController::class,'__invoke')->name('depense');
 //client
 Route::get('clients', ClientController::class,'__invoke')->name('clients');
 Route::get('commandes/{id}', CommandeController::class,'__invoke')->name('commandes');
+Route::get('all/commandes', AllCommandesController::class,'__invoke')->name('all_commandes');
 // Route::get('imprimer/{id}', CommandeController::class,'imprimer')->name('imprimer');
 
 //prestation
@@ -87,7 +90,7 @@ Route::get('boutiqueCommande',CommandeBoutiqueController::class,'__invoke')->nam
 
 Route::get('inventaireDepense',InventaireDepense::class,'__invoke')->name('inventaireDepense');
 
+Route::get('reportingTailleur',ReportingTailleur::class,'__invoke')->name('reportingTailleur');
 
-
-Route::get('inventaireDepenses','App\Http\Controllers\InventaireDepenseController@index')->name('inventaireDepenses');
-Route::get('filtre','App\Http\Controllers\InventaireDepenseController@filtre')->name('filtre');
+// Route::get('inventaireDepenses','App\Http\Controllers\InventaireDepenseController@index')->name('inventaireDepenses');
+// Route::get('filtre','App\Http\Controllers\InventaireDepenseController@filtre')->name('filtre');

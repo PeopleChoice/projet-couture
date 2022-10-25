@@ -11,30 +11,55 @@ class InventaireDepense extends Component
     public $sommes = 0;
     public $date_debut ;
     public $date_fin ;
-
+    public $libelle;
     public $depenses;
    use WithPagination;
     public $html ;
     public $rendu;
+    public $libellArray = array(
+        "Courant", 
+        "Paquetage",
+        "Parfum", 
+        "Eau", 
+        "Salaire",
+        "Location", 
+        "Dépenses diverses",
+        "Fourniture atelier",
+          "Popeline", 
+          "Paquetage", 
+          "Soy",
+          "Faille", 
+          "Renfort",
+          "Dépenses diverses",
+          "Salaire",
+      "Électricité",
+      "Location"
+        
+      );
   
     public function render()
     {
-                // $this->depenses = Depense::whereBetween('date_enreg',[$this->date_debut,$this->date_fin])
-                //     ->get()->toArray();
-              
-                // $somme = 0;
-                // foreach($this->depenses as $i ){
-                    
-                // $somme = $somme + ($i["qt"] * $i["prix"]);
-                // }
+                if($this->libelle)
+                {
+                    $this->depenses = Depense::whereBetween('date_enreg',[$this->date_debut,$this->date_fin])
+                    ->where('libelle',$this->libelle)->get()->toArray();
+                }else{
+                    $this->depenses = Depense::whereBetween('date_enreg',[$this->date_debut,$this->date_fin])
+                    ->get()->toArray();
+                }
                 
-                // $this->sommes = $somme;
-                // ['clients'=> Client::where('mobile','like',$searchTerms)->paginate(10)]
-                // $this->depenses = Depense::whereBetween('date_enreg',[$this->date_debut,$this->date_fin])->paginate(10);
-               
-                return view('livewire.inventaire.depense.inventaire-depense',
+              
+                $somme = 0;
+                foreach($this->depenses as $i ){
+                    
+                $somme = $somme + ($i["qt"] * $i["prix"]);
+                }
+                
+                $this->sommes = $somme;
+                return view('livewire.inventaire.depense.index',
                                                         [
-                                                            'depenses'=> Depense::whereBetween('date_enreg',[$this->date_debut,$this->date_fin])->paginate(10)
+                                                            'depenses'=> $this->depenses,
+                                                            'sommes'=>  $this->sommes
                                                         ]
                             );
               
@@ -44,14 +69,24 @@ class InventaireDepense extends Component
 
 
     public function filter(){
+       
+        $this->depenses = Depense::whereBetween('date_enreg',[$this->date_debut,$this->date_fin])
+        ->get()->toArray();
+        dd($this->depenses);
+    
+        $somme = 0;
+        foreach($this->depenses as $i ){
+            
+            $somme = $somme + ($i["qt"] * $i["prix"]);
 
+        }
 
-        return view('livewire.inventaire.depense.inventaire-depense',
-                                                        [
-                                                            'depenses'=> Depense::whereBetween('date_enreg',[$this->date_debut,$this->date_fin])->paginate(10)
-                                                        ]
-                            );
+        $this->sommes = $somme;
     }
+    
+   
+    
+    
 
     public function updating(){
         $this->depenses =  $this->depenses;

@@ -13,4 +13,7 @@ class DetailsPrestation extends Model
     public function prestataire(){
         return $this->belongsTo(Prestataire::class);
     }
+    public function acompte(){
+        return $this->hasMany(Acompte::class);
+    }
 }

@@ -177,6 +177,7 @@ return [
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
     ],
 
@@ -232,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 

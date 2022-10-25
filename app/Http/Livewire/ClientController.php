@@ -35,11 +35,13 @@ class ClientController extends Component
     public function openModalPopover()
     {
         $this->isModalOpen = true;
+        $this->emit('showModalclient');
     }
 
     public function closeModalPopover()
     {
         $this->isModalOpen = false;
+        $this->emit('hideModalclient');
     }
 
     private function resetCreateForm(){

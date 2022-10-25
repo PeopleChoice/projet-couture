@@ -34,7 +34,7 @@
                <p style="font-family: Calibri" class="text-sm ">{{ $client->prenom }} {{$client->nom }} </p>
                <p style="font-family: Calibri" class="text-sm ">{{ $client->mobile }}  </p>
                <p style="font-family: Calibri" class="text-sm ">{{ $client->email }} </p>
-               <p style="font-family: Calibri" class="text-sm "qz >{{ $client->adresse }} </p>
+               <p style="font-family: Calibri" class="text-sm ">{{ $client->adresse }} </p>
 
         </div>
         <div class="w-full mt-5">
@@ -93,13 +93,13 @@
                Total net à payé  :  {{ $totalDetaille - $mycommande->remise }} fcfa
              </p>
             <p style="font-family: Calibri" class="text-sm" >
-            Accompt : {{ $mycommande->accompt }}  fcfa
+            Accompt : {{ $totalacommpte }}  fcfa
             </p>
            <p  style="font-family: Calibri" class="text-sm" >
                Remise : {{ $mycommande->remise }}  fcfa
            </p>
            <p   style="font-family: Calibri" class="text-sm"  >
-               Reste à payé :  {{ (int)$totalDetaille - (int)$mycommande->remise - (int)$mycommande->accompt }} fcfa
+               Reste à payé :  {{ (int)$totalDetaille - (int)$mycommande->remise - (int)$totalacommpte }} fcfa
            </p>
         </div>    
         <div class="mt-5">
@@ -125,8 +125,9 @@
             Nord foire à  côté du terrain de basket - Dakar ,SENEGAL - Tél : 78 646 78 78 , Email : danehautecouture@gmail.com
          </p>
         </div>
-        <div class="flex-auto justify-right">
-            <p style="text-align: right"><img src="data:image/png;base64,{{ $qr }}" class="w-16"/><p>
+        <div>
+          
+          <p style="text-align: right"><img src="data:image/png;base64,{{ $qr }}" class="w-16"/><p> --}}
        </div>
     </div>
  </footer>

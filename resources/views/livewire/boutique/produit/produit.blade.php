@@ -1,27 +1,21 @@
-<x-slot name="header">
-  <h2 class="text-center">Découvertes</h2>
-</x-slot>
-<div class="py-12">
-  <div class="grid md:grid-cols-2 grid-cols-1">
-    <div class="flex justify-center md:justify-start ">
-      <div>
-        <input type="text"
-          class="shadow appearance-none border rounded w-full  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          placeholder="Search ..." wire:model="searchTerms" />
-      </div>
-    </div>
-    <div class="flex justify-center md:justify-end">
+
+<div class="row">
+  <div class="col-12">
+    
+    
       @can('ajouter_produits')
-      <button wire:click="create()" class="bg-green-700 text-white font-bold py-2 px-4 rounded my-3">Ajouter
+      <button wire:click="create()" class="btn btn-success float-right">Ajouter
         Produit</button>
-    </div>
-    @endcan
+   
+      @endcan
   </div>
-  @if($isModalOpen)
-  @include('livewire.boutique.produit.create_produit')
-  @endif
-  <div class="max-w-full mx-auto sm:px-8 lg:px-10">
-    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
+  <div class="col-12">
+    @if($isModalOpen)
+    @include('livewire.boutique.produit.create_produit')
+    @endif
+  </div>
+  <div class="col-12">
+
       @if (session()->has('message'))
       <div class="flex items-center bg-green-500 text-white text-sm font-bold px-4 py-3" role="alert">
         <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -32,13 +26,73 @@
       </div>
 
       @endif
+  </div>
 
-      <br><br>
+  <div class="col-12">
+    <div class="card-box table-responsive" >
+      <table  id="datatable-responsive" wire:key="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" >
+          <thead>
+            <tr>
+              <th>
+                Catégorie
+              </th>
+              <th>Libellé</th>
+              <th>Taille</th>
+              <th>Prix U</th>
+              <th>Quantité</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($Produits as $item)
+                @if ($item->qt < 4)
+                <tr style="background-color: red">
+                  <td>
+                 {{ $item->categories->libelle }}
+                 </td>
+                  <td>{{ $item->libelle }}</td>
+                  <td>{{ $item->taille }}</td>
+                  <td>{{ $item->prix }}</td>
+                  <td>{{ $item->qt }}</td>
+                  <td>
+                    <button class="btn btn-primary" wire:click="edit({{ $item->id }})">
+                         <i class="fa fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger" wire:click="delete({{ $item->id }})">
+                     <i class="fa fa-trash"></i>
+                </button>
+                  </td>
+              </tr>
+                @else
+                <tr>
+                  <td>
+                 {{ $item->categories->libelle }}
+                 </td>
+                  <td>{{ $item->libelle }}</td>
+                  <td>{{ $item->taille }}</td>
+                  <td>{{ $item->prix }}</td>
+                  <td>{{ $item->qt }}</td>
+                  <td>
+                    <button class="btn btn-primary" wire:click="edit({{ $item->id }})">
+                         <i class="fa fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger" wire:click="delete({{ $item->id }})">
+                     <i class="fa fa-trash"></i>
+                </button>
+                  </td>
+              </tr>
+                @endif
+                
+             @endforeach
+          </tbody>
+       </table>
+    </div>
+  </div>
 
 
 
       {{-- <input type="text" class="justify-content-between" placeholder="Search ..." wire:model="searchTerms" /> --}}
-
+{{-- 
       <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
         <div class="w-full overflow-x-auto">
           <!--Card 1-->
@@ -107,10 +161,22 @@
 
   </div>
 </div>
-</div>
+</div> --}}
 
 
 
 
 
 {{-- ici --}}
+
+@push('scripts')
+ 
+         Livewire.on('showModalproduit',()=>{
+             $("#modalproduit").modal('show');
+         })
+
+         Livewire.on('hideModalproduit',()=>{
+             $("#modalproduit").modal('hide');
+         })
+
+@endpush
